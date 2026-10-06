@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Treasurer handbook for UCT student societies</title>
+<style>
+:root{
+  --bg:#ffffff; --ink:#1c1f23; --muted:#5f6670; --rule:#d7dbe0; --panel:#f3f5f7;
+  --accent:#1f4e8c; --accent-soft:#e8eef7; --ok:#1e6b3a; --bad:#a3241c; --warn:#7a5a00;
+  --sidebar:300px; --measure:68ch;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px); height:100%}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0; background:var(--bg); color:var(--ink); font:17px/1.6 Arial,Helvetica,sans-serif; height:100%}
+a{color:var(--accent)}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+
+/* layout */
+.topbar{display:none}
+.sidebar{position:fixed; top:env(safe-area-inset-top,0px); left:0; bottom:0; width:var(--sidebar); overflow-y:auto; border-right:1px solid var(--rule); padding:36px 28px 40px; background:var(--bg)}
+.brand{font-size:15px; line-height:1.35; color:var(--muted); margin:0 0 28px}
+.brand strong{display:block; color:var(--ink); font-size:19px; margin-bottom:4px}
+.navgroup h2{font-size:12px; letter-spacing:.02em; color:var(--muted); font-weight:normal; margin:22px 0 8px}
+.navgroup.form h2{font-size:14px; color:var(--ink); font-weight:bold; margin-top:26px; padding-top:14px; border-top:1px solid var(--rule)}
+.navgroup ol{list-style:none; margin:0; padding:0}
+.navgroup ol.steps{counter-reset:step}
+.navgroup ol.steps li{counter-increment:step}
+.navgroup li a{display:flex; gap:12px; padding:6px 8px; margin:0 -8px; border-radius:4px; text-decoration:none; color:var(--ink); font-size:15px; line-height:1.4}
+.navgroup ol.steps li a::before{content:counter(step); color:var(--muted); width:1.4em; flex:none; text-align:right}
+.navgroup li a:hover{background:var(--panel)}
+.navgroup li a.active{background:var(--accent-soft); color:var(--accent)}
+.navgroup ol.steps li a.active::before{color:var(--accent)}
+main{margin-left:var(--sidebar); padding:48px 56px 96px}
+.page{max-width:var(--measure)}
+.page.wide{max-width:none}
+.page.wide > p,.page.wide > h1,.page.wide > h2,.page.wide > ol,.page.wide > ul,.page.wide > aside{max-width:var(--measure)}
+
+/* type */
+h1{font-size:34px; line-height:1.15; margin:0 0 .6em; letter-spacing:-.01em}
+h2{font-size:21px; line-height:1.3; margin:2em 0 .5em}
+h3{font-size:17px; margin:1.6em 0 .4em}
+p,ul,ol{margin:0 0 1em}
+li{margin:.25em 0}
+code{font:15px/1.5 Consolas,Menlo,monospace; background:var(--panel); padding:1px 5px; border-radius:3px}
+blockquote{margin:1em 0; padding:14px 18px; background:var(--panel); border-left:3px solid var(--rule)}
+blockquote p:last-child{margin:0}
+table{border-collapse:collapse; width:100%; margin:1em 0 1.5em; font-size:15.5px}
+th,td{text-align:left; padding:7px 10px; border-bottom:1px solid var(--rule); vertical-align:top}
+th{font-weight:bold; border-bottom-color:var(--ink)}
+hr{border:0; border-top:1px solid var(--rule); margin:2em 0}
+
+aside.watch{margin:1.4em 0; padding:14px 18px 14px 20px; border-left:4px solid var(--accent); background:var(--accent-soft); font-size:16px}
+aside.watch p:last-child{margin:0}
+details.reveal{margin:1.4em 0; border:1px solid var(--rule); border-radius:4px}
+details.reveal summary{cursor:pointer; padding:12px 16px; font-weight:bold}
+details.reveal > div{padding:4px 16px 12px; border-top:1px solid var(--rule)}
+
+ol.chain{list-style:none; margin:1.4em 0 2em; padding:0; border-left:2px solid var(--rule); counter-reset:chain}
+ol.chain li{position:relative; padding:0 0 18px 28px; margin:0; counter-increment:chain}
+ol.chain li::before{content:counter(chain); position:absolute; left:-15px; top:2px; width:28px; height:28px; border-radius:50%; background:var(--bg); border:2px solid var(--rule); font-size:13px; line-height:24px; text-align:center; color:var(--muted)}
+ol.chain .who{display:block; font-weight:bold; margin-bottom:2px}
+ol.chain .what{display:block; color:var(--ink)}
+
+nav.pager{display:flex; justify-content:space-between; gap:16px; margin-top:64px; padding-top:20px; border-top:1px solid var(--rule); font-size:15px}
+nav.pager a{text-decoration:none}
+nav.pager a.next{text-align:right}
+nav.pager a.prev::before{content:"Previous"; display:block; color:var(--muted); font-size:13px}
+nav.pager a.next::before{content:"Next"; display:block; color:var(--muted); font-size:13px}
+
+/* controls */
+input[type=text],input[type=search],input[type=number],select,textarea{font:inherit; font-size:16px; color:var(--ink); background:#fff; border:1px solid #9aa2ab; border-radius:4px; padding:8px 10px; width:100%}
+input:disabled{background:var(--panel); color:var(--muted)}
+button{font:inherit; font-size:15px; padding:8px 14px; border-radius:4px; border:1px solid #9aa2ab; background:#fff; color:var(--ink); cursor:pointer}
+button.primary{background:var(--accent); border-color:var(--accent); color:#fff}
+button.link{border:0; background:none; color:var(--accent); padding:0; text-decoration:underline}
+label{display:block; font-size:14px; color:var(--muted); margin-bottom:4px}
+.field{margin-bottom:14px}
+.hint{font-size:13.5px; color:var(--muted); margin-top:4px}
+.hint.over{color:var(--bad)}
+
+/* vendor search */
+.vsearch{margin:1.2em 0 2em; max-width:none}
+.vsearch .chips{display:flex; flex-wrap:wrap; gap:6px; margin:10px 0 6px}
+.vsearch .chips button{font-size:14px; padding:4px 10px; border-radius:999px}
+.vsearch .chips button.on{background:var(--accent); border-color:var(--accent); color:#fff}
+.vsearch .count{font-size:14px; color:var(--muted); margin:8px 0}
+.vsearch table{font-size:15px}
+.vsearch th{white-space:nowrap}
+.vsearch td.num{font-family:Consolas,Menlo,monospace; white-space:nowrap}
+.vsearch td.act{white-space:nowrap}
+.vsearch .cat{display:inline-block; font-size:12.5px; color:var(--muted); border:1px solid var(--rule); border-radius:999px; padding:0 7px; margin:2px 2px 0 0}
+
+/* builder */
+.builder{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:40px; margin:1.5em 0 0; align-items:start}
+.builder .form h2:first-child{margin-top:0}
+.builder .form h2{font-size:17px; margin:1.8em 0 .6em; padding-bottom:6px; border-bottom:1px solid var(--rule)}
+.builder .row2{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+.builder .row3{display:grid; grid-template-columns:2fr 1fr 1fr; gap:12px}
+.builder .items .item{border:1px solid var(--rule); border-radius:4px; padding:12px 14px 4px; margin-bottom:12px; position:relative}
+.builder .items .item .rm{position:absolute; top:8px; right:8px; font-size:13px; padding:3px 8px}
+.builder .actions{display:flex; gap:10px; flex-wrap:wrap; margin:0 0 20px}
+.builder .side{position:sticky; top:24px}
+.builder .checks{margin:0 0 28px}
+.builder .checks h2{font-size:17px; margin:0 0 10px}
+.builder .checks ul{list-style:none; margin:0; padding:0; border:1px solid var(--rule); border-radius:4px}
+.builder .checks li{display:flex; gap:10px; padding:8px 12px; border-bottom:1px solid var(--rule); font-size:15px; line-height:1.45}
+.builder .checks li:last-child{border-bottom:0}
+.builder .checks li .mark{flex:none; width:20px; height:20px; border-radius:50%; margin-top:2px; font-size:12px; line-height:20px; text-align:center; color:#fff; background:#9aa2ab}
+.builder .checks li.ok .mark{background:var(--ok)}
+.builder .checks li.bad .mark{background:var(--bad)}
+.builder .checks li.warn .mark{background:var(--warn)}
+.builder .checks .summary{font-size:15px; margin:8px 0 0; color:var(--muted)}
+.vlist{position:relative}
+.vlist .drop{position:absolute; z-index:5; left:0; right:0; top:100%; background:#fff; border:1px solid #9aa2ab; border-top:0; border-radius:0 0 4px 4px; max-height:260px; overflow-y:auto; box-shadow:0 6px 16px rgba(0,0,0,.08)}
+.vlist .drop button{display:block; width:100%; text-align:left; border:0; border-radius:0; border-bottom:1px solid var(--rule); padding:8px 10px; font-size:14.5px; background:#fff}
+.vlist .drop button:hover,.vlist .drop button:focus{background:var(--accent-soft)}
+.vlist .drop button small{color:var(--muted)}
+.vendorbadge{font-size:14px; margin-top:6px}
+.vendorbadge.ok{color:var(--ok)} .vendorbadge.bad{color:var(--bad)}
+
+/* the MM010 preview, drawn like the paper form */
+.mm010{font-size:12.5px; line-height:1.3; border:1.5px solid var(--ink); background:#fff; color:var(--ink)}
+.mm010 .head{display:flex; justify-content:space-between; align-items:flex-end; padding:8px 10px; border-bottom:1.5px solid var(--ink)}
+.mm010 .head b{font-size:14px}
+.mm010 .head span{font-size:11px; color:var(--muted)}
+.mm010 .sec{padding:4px 10px 2px; font-weight:bold; background:var(--panel); border-bottom:1px solid var(--ink); font-size:11.5px}
+.mm010 .grid{display:grid; grid-template-columns:1fr 1fr}
+.mm010 .cell{padding:5px 10px; border-bottom:1px solid var(--ink); border-right:1px solid var(--ink); min-height:38px}
+.mm010 .cell:nth-child(2n){border-right:0}
+.mm010 .cell.full{grid-column:1/-1; border-right:0}
+.mm010 .cell small{display:block; color:var(--muted); font-size:10.5px}
+.mm010 .cell .v{display:block; min-height:1.2em; word-break:break-word}
+.mm010 .cell .v.empty{color:#b3b9c0}
+.mm010 table{margin:0; font-size:11.5px; border-collapse:collapse; width:100%}
+.mm010 th,.mm010 td{border-right:1px solid var(--ink); border-bottom:1px solid var(--ink); padding:4px 6px; vertical-align:top}
+.mm010 th{background:var(--panel); font-weight:bold; border-bottom-color:var(--ink)}
+.mm010 th:last-child,.mm010 td:last-child{border-right:0}
+.mm010 td.r{text-align:right; white-space:nowrap}
+.mm010 .gl{font-family:Consolas,Menlo,monospace; letter-spacing:.25em}
+.mm010 .tick{display:inline-block; width:12px; height:12px; border:1px solid var(--ink); vertical-align:-1px; margin-right:3px; text-align:center; line-height:10px; font-size:10px}
+.mm010 .blank{color:#b3b9c0}
+.mm010 .auth .cell{min-height:46px}
+.mm010 .proc .cell{min-height:40px}
+.preview-note{font-size:13.5px; color:var(--muted); margin:8px 0 0}
+
+@media (max-width: 980px){
+  .builder{grid-template-columns:1fr}
+  .builder .side{position:static}
+}
+@media (max-width: 860px){
+  .topbar{display:flex; justify-content:space-between; align-items:center; position:sticky; top:env(safe-area-inset-top,0px); z-index:10; background:var(--bg); border-bottom:1px solid var(--rule); padding:12px 18px; font-size:15px}
+  .topbar strong{font-size:16px}
+  .sidebar{display:none; position:static; width:auto; border-right:0; border-bottom:1px solid var(--rule); padding:16px 18px 24px}
+  .sidebar.open{display:block}
+  .sidebar .brand{display:none}
+  main{margin-left:0; padding:28px 18px 72px}
+  h1{font-size:28px}
+  .builder .row3{grid-template-columns:1fr}
+  .builder .row2{grid-template-columns:1fr}
+  .mm010 .grid{grid-template-columns:1fr}
+  .mm010 .cell{border-right:0}
+  .vsearch table th:nth-child(4),.vsearch table td:nth-child(4){display:none}
+}
+@media (prefers-reduced-motion: no-preference){
+  details.reveal > div{animation:none}
+}
+</style>
+</head>
+<body>
+<div class="topbar"><strong>Treasurer handbook</strong><button id="menu" aria-expanded="false" aria-controls="sidebar">Contents</button></div>
+<nav class="sidebar" id="sidebar" aria-label="Contents">
+  <p class="brand"><strong>Treasurer handbook</strong>For treasurers of UCT student societies. Department of Student Affairs.</p>
+  <!--NAV-->
+</nav>
+<main id="main">
+<!--PAGES-->
+</main>
+
+<script>
+const VENDORS = /*VENDORS*/;
+const ORDER = /*ORDER*/;
+const CATS = ["Catering & Events","Restaurants","Printing","Transport","Hotels","Apparel","Furniture","Hiring & Deco","Flooring","Aircon","Locksmith"];
+const byNumber = new Map(VENDORS.map(v => [v.v, v]));
+let chosenVendor = null;   // set from the vendor search "Use in builder" button
+
+/* ---------- routing ---------- */
+const pages = [...document.querySelectorAll('section.page')];
+const links = [...document.querySelectorAll('.sidebar a[data-page]')];
+function show(slug){
+  if(!ORDER.includes(slug)) slug = ORDER[0];
+  pages.forEach(p => p.hidden = (p.id !== 'page-' + slug));
+  links.forEach(a => a.classList.toggle('active', a.dataset.page === slug));
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('menu').setAttribute('aria-expanded','false');
+  window.scrollTo({top:0});
+  if(slug === 'build-and-check') builderFocusVendor();
+}
+window.addEventListener('hashchange', () => show(location.hash.slice(1)));
+document.getElementById('menu').addEventListener('click', e => {
+  const sb = document.getElementById('sidebar');
+  const open = sb.classList.toggle('open');
+  e.currentTarget.setAttribute('aria-expanded', String(open));
+});
+
+/* ---------- vendor search ---------- */
+(function(){
+  const host = document.getElementById('vendor-search');
+  if(!host) return;
+  host.className = 'vsearch';
+  host.closest('.page').classList.add('wide');
+  host.innerHTML = `
+    <label for="vq">Search by name, town or vendor number</label>
+    <input type="search" id="vq" placeholder="For example: pizza, Mowbray, 204246" autocomplete="off">
+    <div class="chips" id="vchips"></div>
+    <p class="count" id="vcount"></p>
+    <div id="vresults"></div>`;
+  const q = host.querySelector('#vq'), chips = host.querySelector('#vchips'), out = host.querySelector('#vresults'), count = host.querySelector('#vcount');
+  let cat = null;
+  CATS.forEach(c => { const b = document.createElement('button'); b.textContent = c; b.onclick = () => { cat = (cat === c ? null : c); [...chips.children].forEach(x => x.classList.toggle('on', x.textContent === cat)); run(); }; chips.appendChild(b); });
+  function run(){
+    const s = q.value.trim().toLowerCase();
+    let rows = VENDORS;
+    if(cat) rows = rows.filter(v => v.k.includes(cat));
+    if(s) rows = rows.filter(v => v.n.toLowerCase().includes(s) || v.c.toLowerCase().includes(s) || v.v.includes(s));
+    if(!s && !cat){ count.textContent = `${VENDORS.length.toLocaleString('en-ZA')} registered vendors. Type to search, or pick a category.`; out.innerHTML=''; return; }
+    const shown = rows.slice(0, 80);
+    count.textContent = rows.length === 0 ? 'No vendor matches. Try a shorter word, or part of the name.' : `${rows.length.toLocaleString('en-ZA')} match${rows.length===1?'':'es'}${rows.length>80?', showing the first 80':''}.`;
+    out.innerHTML = rows.length ? `<table><thead><tr><th>Vendor no.</th><th>Registered name</th><th>Town</th><th>Telephone</th><th></th></tr></thead><tbody>` +
+      shown.map(v => `<tr><td class="num">${v.v}</td><td>${esc(v.n)}${v.k.map(k=>`<span class="cat">${k}</span>`).join('')}</td><td>${esc(v.c)}</td><td>${esc(v.t)}</td><td class="act"><button data-v="${v.v}">Use in builder</button></td></tr>`).join('') + '</tbody></table>' : '';
+  }
+  out.addEventListener('click', e => { const b = e.target.closest('button[data-v]'); if(!b) return; chosenVendor = byNumber.get(b.dataset.v); location.hash = '#build-and-check'; });
+  q.addEventListener('input', run); run();
+})();
+function esc(s){ return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+/* ---------- builder ---------- */
+const B = {};
+(function(){
+  const host = document.getElementById('builder');
+  if(!host) return;
+  host.closest('.page').classList.add('wide');
+  host.className = 'builder';
+  const today = new Date(), dd = String(today.getDate()).padStart(2,'0'), mm = String(today.getMonth()+1).padStart(2,'0');
+  host.innerHTML = `
+  <div class="form">
+    <div class="actions"><button type="button" id="loadDemo">Load the practice scenario</button><button type="button" id="clearAll">Clear the form</button></div>
+    <h2>Order details</h2>
+    <div class="row2">
+      <div class="field"><label for="f_name">Requester name</label><input type="text" id="f_name" autocomplete="off"></div>
+      <div class="field"><label for="f_tel">Tel.</label><input type="text" id="f_tel" placeholder="+27 83 000 0000" autocomplete="off"></div>
+    </div>
+    <div class="row2">
+      <div class="field"><label for="f_dept">Department</label><input type="text" id="f_dept" value="Department of Student Affairs" disabled><p class="hint">Always the DSA. The builder does not let you change it.</p></div>
+      <div class="field"><label for="f_date">Date</label><input type="text" id="f_date" value="${dd}/${mm}/${today.getFullYear()}" placeholder="dd/mm/yyyy"></div>
+    </div>
+    <div class="field"><label for="f_group">Purchasing group (your society's name)</label><input type="text" id="f_group" placeholder="For example: UCT Developer Society"></div>
+    <div class="field vlist"><label for="f_vendor">Vendor name (type to search the register)</label><input type="text" id="f_vendor" autocomplete="off" placeholder="Start typing a name or number"><div class="drop" id="vdrop" hidden></div><div class="vendorbadge" id="vbadge"></div></div>
+    <div class="field"><label for="f_vnum">Vendor number</label><input type="text" id="f_vnum" inputmode="numeric" placeholder="Six digits"></div>
+
+    <h2>The quote</h2>
+    <div class="row2">
+      <div class="field"><label for="f_qnum">Quote number</label><input type="text" id="f_qnum" placeholder="As printed on the quote"></div>
+      <div class="field"><label for="f_qsub">Quote subtotal, excluding VAT (R)</label><input type="text" id="f_qsub" inputmode="decimal" placeholder="0.00"><p class="hint" id="vathint">If the quote only shows a VAT-inclusive total, type it here instead and press <button type="button" class="link" id="devat">divide by 1.15</button>.</p></div>
+    </div>
+
+    <h2>Item details</h2>
+    <div class="items" id="items"></div>
+    <div class="actions"><button type="button" id="addItem">Add a row</button></div>
+    <p class="hint">One row for the whole order at the quote's subtotal is the simplest. The rows' totals must add up to the quote subtotal exactly.</p>
+
+    <h2>Your society's numbers</h2>
+    <p class="hint" style="margin:0 0 10px">Typed on every item row of the real form. Nothing you enter here leaves this page; if you do not have your numbers yet, use placeholder digits.</p>
+    <div class="row3">
+      <div class="field"><label for="f_fund">Fund number</label><input type="text" id="f_fund" inputmode="numeric"></div>
+      <div class="field"><label for="f_cc">Cost centre</label><input type="text" id="f_cc" inputmode="numeric"></div>
+      <div class="field"><label for="f_gl">GL account number</label><input type="text" id="f_gl" inputmode="numeric"></div>
+    </div>
+
+    <h2>Authorisation</h2>
+    <div class="row2">
+      <div class="field"><label for="f_sel">Correct vendor selection procedure followed</label><select id="f_sel"><option value="">Choose</option><option>YES</option><option>NO</option></select></div>
+      <div class="field"><label for="f_coi">Conflict of interest</label><select id="f_coi"><option value="">Choose</option><option>NO</option><option>YES</option></select></div>
+    </div>
+    <p class="hint">The fund holder block, the threshold blocks and the processing block stay blank. The preview shows them blank on purpose.</p>
+  </div>
+  <div class="side">
+    <div class="checks"><h2>Checks</h2><ul id="checks"></ul><p class="summary" id="csum"></p></div>
+    <div class="mm010" id="preview"></div>
+    <p class="preview-note">A preview of how your entries land on the MM010. The real form is the Word template from forms.uct.ac.za; type the same values into it.</p>
+  </div>`;
+
+  const $ = id => host.querySelector('#'+id);
+  const ids = ['f_name','f_tel','f_date','f_group','f_vendor','f_vnum','f_qnum','f_qsub','f_fund','f_cc','f_gl','f_sel','f_coi'];
+  ids.forEach(id => $(id).addEventListener('input', update));
+  $('f_sel').addEventListener('change', update); $('f_coi').addEventListener('change', update);
+
+  /* vendor typeahead */
+  const vin = $('f_vendor'), drop = $('vdrop'), badge = $('vbadge');
+  vin.addEventListener('input', () => {
+    const s = vin.value.trim().toLowerCase();
+    if(s.length < 2){ drop.hidden = true; return; }
+    const hits = VENDORS.filter(v => v.n.toLowerCase().includes(s) || v.v.startsWith(s)).slice(0, 12);
+    drop.innerHTML = hits.map(v => `<button type="button" data-v="${v.v}">${esc(v.n)} <small>${v.v}${v.c?', '+esc(v.c):''}</small></button>`).join('');
+    drop.hidden = hits.length === 0;
+  });
+  drop.addEventListener('click', e => { const b = e.target.closest('button[data-v]'); if(!b) return; pickVendor(byNumber.get(b.dataset.v)); });
+  document.addEventListener('click', e => { if(!host.querySelector('.vlist').contains(e.target)) drop.hidden = true; });
+  function pickVendor(v){ vin.value = v.n; $('f_vnum').value = v.v; drop.hidden = true; update(); }
+  B.focusVendor = () => { if(chosenVendor){ pickVendor(chosenVendor); chosenVendor = null; } };
+
+  /* items */
+  let n = 0;
+  function addItem(vals){
+    n++;
+    const d = document.createElement('div'); d.className = 'item'; d.dataset.i = n;
+    d.innerHTML = `
+      <button type="button" class="rm" aria-label="Remove row">Remove</button>
+      <div class="field"><label>Item details (quote number, what, which event, when)</label><input type="text" class="i_desc" value="${esc(vals?.desc||'')}"><p class="hint cnt"></p></div>
+      <div class="row2">
+        <div class="field"><label>Qty</label><input type="text" class="i_qty" inputmode="numeric" value="${esc(vals?.qty||'1')}"></div>
+        <div class="field"><label>Unit net amount, excluding VAT (R)</label><input type="text" class="i_unit" inputmode="decimal" value="${esc(vals?.unit||'')}"></div>
+      </div>`;
+    d.querySelector('.rm').onclick = () => { if(items().length > 1){ d.remove(); update(); } };
+    d.querySelectorAll('input').forEach(i => i.addEventListener('input', update));
+    $('items').appendChild(d);
+    update();
+  }
+  const items = () => [...$('items').querySelectorAll('.item')];
+  $('addItem').onclick = () => addItem();
+
+  $('devat').onclick = () => { const x = num($('f_qsub').value); if(x > 0){ $('f_qsub').value = (x/1.15).toFixed(2); update(); } };
+  $('loadDemo').onclick = () => {
+    $('f_date').value = '26/02/2027'; $('f_qnum').value = 'SR-2027-031'; $('f_qsub').value = '2130.43';
+    pickVendor(byNumber.get('204246'));
+    $('items').innerHTML = ''; n = 0; addItem({desc:'Q#SR-2027-031 lunch Git workshop 12/03', qty:'1', unit:'2130.43'});
+    $('f_sel').value = 'YES'; $('f_coi').value = 'NO';
+    update(); $('f_name').focus();
+  };
+  $('clearAll').onclick = () => {
+    ids.forEach(id => { if(id !== 'f_date') $(id).value = ''; });
+    $('f_date').value = `${dd}/${mm}/${today.getFullYear()}`; badge.textContent = '';
+    $('items').innerHTML = ''; n = 0; addItem();
+  };
+
+  function num(s){ const x = parseFloat(String(s).replace(/[R\s,]/g,'')); return isNaN(x) ? 0 : x; }
+  const money = x => 'R' + x.toLocaleString('en-ZA', {minimumFractionDigits:2, maximumFractionDigits:2}).replace(/,/g,' ');
+  const VAGUE = ['drinks','food','snacks','refreshments','catering','event costs','event','supplies','stuff','items','misc','things','lunch','pizza'];
+
+  function update(){
+    const name = $('f_name').value.trim(), tel = $('f_tel').value.trim(), date = $('f_date').value.trim(), group = $('f_group').value.trim();
+    const vname = vin.value.trim(), vnum = $('f_vnum').value.trim(), qnum = $('f_qnum').value.trim(), qsub = num($('f_qsub').value);
+    const fund = $('f_fund').value.trim(), cc = $('f_cc').value.trim(), gl = $('f_gl').value.trim().replace(/\s/g,'');
+    const sel = $('f_sel').value, coi = $('f_coi').value;
+    const rows = items().map(d => { const desc = d.querySelector('.i_desc').value.trim(), qty = num(d.querySelector('.i_qty').value), unit = num(d.querySelector('.i_unit').value); const c = d.querySelector('.cnt'); c.textContent = `${desc.length} of 40 characters`; c.classList.toggle('over', desc.length > 40); return {desc, qty, unit, total: Math.round(qty*unit*100)/100}; });
+    const total = Math.round(rows.reduce((a,r)=>a+r.total,0)*100)/100;
+
+    /* vendor badge */
+    const reg = byNumber.get(vnum);
+    if(!vname && !vnum){ badge.textContent=''; badge.className='vendorbadge'; }
+    else if(reg && reg.n === vname){ badge.textContent = `Registered vendor ${reg.v}${reg.c ? ', ' + reg.c : ''}.`; badge.className='vendorbadge ok'; }
+    else if(reg && reg.n !== vname){ badge.textContent = `Vendor ${vnum} is registered as "${reg.n}". Use that name.`; badge.className='vendorbadge bad'; }
+    else { badge.textContent = 'Not found in the register. UCT cannot pay an unregistered vendor.'; badge.className='vendorbadge bad'; }
+
+    /* checks */
+    const C = [];
+    const chk = (state, text) => C.push({state, text: text.charAt(0).toUpperCase() + text.slice(1)});
+    const pend = (cond, okText, badText, blankText) => cond === null ? chk('pending', blankText) : chk(cond ? 'ok' : 'bad', cond ? okText : badText);
+
+    pend(name ? true : null, 'Requester name filled in.', '', 'Requester name is empty.');
+    pend(tel ? /^\+\d[\d\s]{8,}$/.test(tel) : null, 'Telephone number includes the country code.', 'Telephone number should start with the country code, for example +27 83 000 0000.', 'Telephone number is empty.');
+    pend(date ? /^\d{2}\/\d{2}\/\d{4}$/.test(date) : null, 'Date is in dd/mm/yyyy format.', 'Date must be dd/mm/yyyy.', 'Date is empty.');
+    chk('ok', 'Department is "Department of Student Affairs".');
+    if(!group) chk('pending', 'Purchasing group is empty. It takes your society\'s name.');
+    else if(/student affairs|dsa/i.test(group)) chk('bad', 'Purchasing group is the society\'s name, not the DSA. The DSA goes under Department.');
+    else if(reg && group.toLowerCase() === reg.n.toLowerCase()) chk('bad', 'Purchasing group is the society, not the vendor. The vendor has its own fields.');
+    else chk('ok', 'Purchasing group is your society\'s name.');
+    if(!vname && !vnum) chk('pending', 'No vendor chosen. Search the register above.');
+    else if(reg && reg.n === vname) chk('ok', 'Vendor name and number match the register.');
+    else if(reg) chk('bad', 'Vendor number is registered, but the name does not match the register. Copy the registered name exactly.');
+    else chk('bad', 'Vendor not found in the register. Pick a registered vendor or ask Treasury how this one can register.');
+
+    rows.forEach((r, i) => {
+      const lbl = rows.length > 1 ? `Row ${i+1}: ` : '';
+      if(!r.desc) chk('pending', `${lbl}item description is empty.`);
+      else {
+        const lower = r.desc.toLowerCase();
+        if(qnum && !lower.includes(qnum.toLowerCase())) chk('bad', `${lbl}description does not include the quote number ${qnum}. Put it first.`);
+        else if(VAGUE.includes(lower.replace(/[^a-z ]/g,'').trim())) chk('bad', `${lbl}"${r.desc}" is too vague. Treasury needs what it is, which event, and when.`);
+        else if(!/\d/.test(lower.replace(qnum.toLowerCase(),''))) chk('warn', `${lbl}description has no date. Add which event and when, for example "AGM 25 Aug".`);
+        else if(r.desc.length > 40) chk('warn', `${lbl}description is ${r.desc.length} characters; the form asks for 40. Trim it if you can.`);
+        else chk('ok', `${lbl}description names the quote, the item and the event.`);
+      }
+      if(r.qty > 0 && r.unit > 0) chk('ok', `${lbl}quantity and unit amount filled in (${money(r.total)}).`);
+      else chk('pending', `${lbl}quantity and unit amount needed.`);
+    });
+
+    if(!qsub) chk('pending', 'Quote subtotal (excluding VAT) not entered, so the TOTAL cannot be checked.');
+    else if(total === 0) chk('pending', 'Item rows have no amounts yet.');
+    else if(Math.abs(total - qsub) < 0.005) chk('ok', `TOTAL ${money(total)} equals the quote subtotal.`);
+    else if(Math.abs(total - Math.round(qsub*1.15*100)/100) < 0.02) chk('bad', `TOTAL ${money(total)} is the VAT-inclusive amount. The form wants ${money(qsub)}, excluding VAT.`);
+    else chk('bad', `TOTAL ${money(total)} does not equal the quote subtotal ${money(qsub)}. The rows must add up to the subtotal to the cent.`);
+    if(total >= 100000) chk('bad', 'Total is R100 000 or more. UCT needs two written quotes at this level; talk to Treasury before submitting.');
+
+    const nums = [['Fund number', fund], ['Cost centre', cc], ['GL account number', gl]];
+    nums.forEach(([l, v]) => { if(!v) chk('pending', `${l} is empty. It must appear on every item row.`); else if(!/^\d+$/.test(v)) chk('bad', `${l} should be digits only.`); else chk('ok', `${l} filled in.`); });
+
+    if(!sel) chk('pending', 'Vendor selection procedure: tick YES.'); else chk(sel === 'YES' ? 'ok' : 'bad', sel === 'YES' ? 'Vendor selection procedure: YES.' : 'Vendor selection procedure should be YES; one quote is the correct procedure below R100 000.');
+    if(!coi) chk('pending', 'Conflict of interest: tick NO.'); else chk(coi === 'NO' ? 'ok' : 'bad', coi === 'NO' ? 'Conflict of interest: NO.' : 'A conflict of interest must be discussed with Student Treasury before you submit.');
+    chk('ok', 'Fund holder, threshold and processing blocks left blank.');
+
+    $('checks').innerHTML = C.map(c => `<li class="${c.state}"><span class="mark" aria-hidden="true">${c.state==='ok'?'✓':c.state==='bad'?'✕':c.state==='warn'?'!':''}</span><span>${esc(c.text)}</span></li>`).join('');
+    const bad = C.filter(c=>c.state==='bad').length, pending = C.filter(c=>c.state==='pending').length, warn = C.filter(c=>c.state==='warn').length;
+    $('csum').textContent = bad ? `${bad} problem${bad>1?'s':''} would send this form back.` : pending ? `${pending} field${pending>1?'s':''} still to fill in.` : warn ? 'Nothing would send this back, but see the warning.' : 'Every check passes. Type these values into the Word template and send it with the quote.';
+
+    /* preview */
+    const V = (v, ph) => v ? `<span class="v">${esc(v)}</span>` : `<span class="v empty">${ph||''}</span>`;
+    const tick = on => `<span class="tick">${on?'✓':''}</span>`;
+    $('preview').innerHTML = `
+      <div class="head"><b>MM010 Purchase Order Request</b><span>University of Cape Town, Finance</span></div>
+      <div class="sec">Order details</div>
+      <div class="grid">
+        <div class="cell"><small>Requester: Name</small>${V(name,'')}</div>
+        <div class="cell"><small>Tel.</small>${V(tel)}</div>
+        <div class="cell"><small>Department</small><span class="v">Department of Student Affairs</span></div>
+        <div class="cell"><small>Date</small>${V(date)}</div>
+        <div class="cell"><small>Purchasing group</small>${V(group)}</div>
+        <div class="cell"><small>Vendor number (if known)</small>${V(vnum)}</div>
+        <div class="cell full"><small>Vendor name</small>${V(vname)}</div>
+      </div>
+      <div class="sec">Item details</div>
+      <table><thead><tr><th>Item details (quote no. and description)</th><th>Qty</th><th>Unit net amt (excl. VAT)</th><th>Curr.</th><th>Total ZAR (excl. VAT)</th><th>Fund</th><th>Cost centre</th><th>GL account</th></tr></thead><tbody>
+      ${rows.map(r => `<tr><td>${esc(r.desc)||'<span class="blank">&nbsp;</span>'}</td><td class="r">${r.qty||''}</td><td class="r">${r.unit?r.unit.toFixed(2):''}</td><td>ZAR</td><td class="r">${r.total?r.total.toFixed(2):''}</td><td>${esc(fund)}</td><td>${esc(cc)}</td><td class="gl">${esc(gl)}</td></tr>`).join('')}
+      <tr><td colspan="4" style="text-align:right"><b>TOTAL</b></td><td class="r"><b>${total?total.toFixed(2):''}</b></td><td colspan="3"></td></tr>
+      </tbody></table>
+      <div class="sec">Authorisation</div>
+      <div class="grid auth">
+        <div class="cell"><small>Correct vendor selection procedure followed</small><span class="v">${tick(sel==='YES')} YES &nbsp; ${tick(sel==='NO')} NO</span></div>
+        <div class="cell"><small>Conflict of interest</small><span class="v">${tick(coi==='YES')} YES &nbsp; ${tick(coi==='NO')} NO &nbsp; <span class="blank">details</span></span></div>
+        <div class="cell"><small>Fund holder: name, signature, date</small><span class="v blank">left blank</span></div>
+        <div class="cell"><small>Above R100 000 / above R2 000 000</small><span class="v blank">left blank</span></div>
+      </div>
+      <div class="sec">Processing details (Treasury use)</div>
+      <div class="grid proc">
+        <div class="cell"><small>PO number</small><span class="v blank">&nbsp;</span></div>
+        <div class="cell"><small>PO value and date</small><span class="v blank">&nbsp;</span></div>
+      </div>`;
+  }
+  addItem();
+})();
+function builderFocusVendor(){ if(B.focusVendor) B.focusVendor(); }
+
+show(location.hash.slice(1));
+</script>
+</body>
+</html>
